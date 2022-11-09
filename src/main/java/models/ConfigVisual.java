@@ -70,6 +70,14 @@ public class ConfigVisual {
         SilenciarNotificaciones_Config = silenciarNotificaciones_Config;
     }
 
+    public Alumno getAlumno_Config() {
+        return Alumno_Config;
+    }
+
+    public void setAlumno_Config(Alumno alumno_Config) {
+        Alumno_Config = alumno_Config;
+    }
+
     @Override
     public String toString() {
         return "ConfigVisual{" +

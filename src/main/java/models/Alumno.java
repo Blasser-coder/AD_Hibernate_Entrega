@@ -50,6 +50,14 @@ public class Alumno {
         this.ID_Alumno = ID_Alumno;
     }
 
+    public ConfigVisual getConfiguracion_Alumno() {
+        return Configuracion_Alumno;
+    }
+
+    public void setConfiguracion_Alumno(ConfigVisual configuracion_Alumno) {
+        Configuracion_Alumno = configuracion_Alumno;
+    }
+
     public String getNombre_Alumno() {
         return Nombre_Alumno;
     }
@@ -86,6 +94,7 @@ public class Alumno {
     public String toString() {
         return "Alumno{" +
                 "ID_Alumno=" + ID_Alumno +
+                ", Configuracion_Alumno=" + Configuracion_Alumno +
                 ", Nombre_Alumno='" + Nombre_Alumno + '\'' +
                 ", Apellido_Alumno='" + Apellido_Alumno + '\'' +
                 ", Email_Alumno='" + Email_Alumno + '\'' +

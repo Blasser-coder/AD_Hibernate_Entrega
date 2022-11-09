@@ -11,15 +11,15 @@ public class Curso {
     @Column(name = "ID_Curso", nullable = false)
     private Long ID_Curso;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "Profesor_ID",  referencedColumnName = "ID_Profesor")
     private Profesor Profesor_Curso;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "Cursos_Alumnos",
             joinColumns = @JoinColumn(name = "ID_Curso", referencedColumnName = "ID_Curso"),
             inverseJoinColumns = @JoinColumn(name = "ID_Alumno", referencedColumnName = "ID_Alumno"))
-    private List<Alumno> Alumnos_En_Cursos;
+    private List<Alumno> Alumnos_En_Cursos = new java.util.ArrayList<>();
 
     @Column(name = "Tipo_Curso")
     private String Tipo_Curso;
@@ -29,6 +29,10 @@ public class Curso {
 
     @Column(name = "Asignaturas_Curso")
     private int Asignaturas_Curso;
+
+    public List<Alumno> getAlumnos_En_Cursos() {
+        return Alumnos_En_Cursos;
+    }
 
     public Curso() {}
 
@@ -91,10 +95,12 @@ public class Curso {
     public String toString() {
         return "Curso{" +
                 "ID_Curso=" + ID_Curso +
-                ", Profesor_Curso=" + Profesor_Curso +
+                ", Alumnos_En_Cursos=" + Alumnos_En_Cursos +
                 ", Tipo_Curso='" + Tipo_Curso + '\'' +
                 ", Alumnos_Curso=" + Alumnos_Curso +
                 ", Asignaturas_Curso=" + Asignaturas_Curso +
                 '}';
     }
 }
+
+
