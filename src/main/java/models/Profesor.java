@@ -1,50 +1,61 @@
 package models;
 
-import com.sun.istack.NotNull;
 import jakarta.persistence.*;
-import org.hibernate.annotations.NotFound;
 
 import java.util.List;
-
 @Entity
 public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Profesor", nullable = false)
-    private Long id;
+    private Long ID_Profesor;
 
-    @NotNull
+    @OneToMany(mappedBy = "Profesor_Curso", fetch = FetchType.LAZY)
+    private List<Curso> Cursos_Profesor = new java.util.ArrayList<>();
+
+    @Column(name = "Nombre_Profresor")
     private String Nombre_Profesor;
 
-    @NotNull
+    @Column(name = "Apellido_Profesor")
     private String Apellido_Profesor;
 
-    @NotNull
+    @Column(name = "Email_Profesor")
     private String Email_Profesor;
 
-    @NotNull
-    private String Centro_Profesor;
-
-    @OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY)
-    private List<Curso> Cursos_Profesor;
-
-    public Profesor(Long id, String nombre_Profesor, String apellido_Profesor, String email_Profesor, String centro_Profesor, List<Curso> cursos_Profesor) {
-        this.id = id;
-        Nombre_Profesor = nombre_Profesor;
-        Apellido_Profesor = apellido_Profesor;
-        Email_Profesor = email_Profesor;
-        Centro_Profesor = centro_Profesor;
-        Cursos_Profesor = cursos_Profesor;
-    }
+    @Column(name = "CodCentro_Profesor")
+    private String CodCentro_Profesor;
 
     public Profesor() {}
 
-    public Long getId() {
-        return id;
+    public Profesor(Long ID_Profesor, String nombre_Profesor, String apellido_Profesor, String email_Profesor, String codCentro_Profesor) {
+        this.ID_Profesor = ID_Profesor;
+        Nombre_Profesor = nombre_Profesor;
+        Apellido_Profesor = apellido_Profesor;
+        Email_Profesor = email_Profesor;
+        CodCentro_Profesor = codCentro_Profesor;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Profesor(String nombre_Profesor, String apellido_Profesor, String email_Profesor, String codCentro_Profesor) {
+        Nombre_Profesor = nombre_Profesor;
+        Apellido_Profesor = apellido_Profesor;
+        Email_Profesor = email_Profesor;
+        CodCentro_Profesor = codCentro_Profesor;
+    }
+
+    public Long getID_Profesor() {
+        return ID_Profesor;
+    }
+
+    public void setID_Profesor(Long ID_Profesor) {
+        this.ID_Profesor = ID_Profesor;
+    }
+
+    public List<Curso> getCursos_Profesor() {
+        return Cursos_Profesor;
+    }
+
+    public void setCursos_Profesor(List<Curso> cursos_Profesor) {
+        Cursos_Profesor = cursos_Profesor;
     }
 
     public String getNombre_Profesor() {
@@ -71,30 +82,23 @@ public class Profesor {
         Email_Profesor = email_Profesor;
     }
 
-    public String getCentro_Profesor() {
-        return Centro_Profesor;
+    public String getCodCentro_Profesor() {
+        return CodCentro_Profesor;
     }
 
-    public void setCentro_Profesor(String centro_Profesor) {
-        Centro_Profesor = centro_Profesor;
-    }
-
-    public List<Curso> getCursos_Profesor() {
-        return Cursos_Profesor;
-    }
-
-    public void setCursos_Profesor(List<Curso> cursos_Profesor) {
-        Cursos_Profesor = cursos_Profesor;
+    public void setCodCentro_Profesor(String codCentro_Profesor) {
+        CodCentro_Profesor = codCentro_Profesor;
     }
 
     @Override
     public String toString() {
         return "Profesor{" +
-                "id=" + id +
+                "ID_Profesor=" + ID_Profesor +
+                ", Cursos_Profesor=" + Cursos_Profesor +
                 ", Nombre_Profesor='" + Nombre_Profesor + '\'' +
                 ", Apellido_Profesor='" + Apellido_Profesor + '\'' +
                 ", Email_Profesor='" + Email_Profesor + '\'' +
-                ", Centro_Profesor='" + Centro_Profesor + '\'' +
+                ", CodCentro_Profesor='" + CodCentro_Profesor + '\'' +
                 '}';
     }
 }

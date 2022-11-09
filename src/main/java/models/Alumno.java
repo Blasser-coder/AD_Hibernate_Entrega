@@ -1,129 +1,95 @@
 package models;
 
-import com.sun.istack.NotNull;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Alumno {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Alumno", nullable = false)
-    private long ID_Alumno;
+    private Long ID_Alumno;
 
-    @NotNull
-    private String Al_Nombre;
+    @OneToOne(mappedBy = "Alumno_Config")
+    private ConfigVisual Configuracion_Alumno;
 
-    @NotNull
-    private String Al_Apellidos;
+    @Column(name = "Nombre_Alumno")
+    private String Nombre_Alumno;
 
-    @NotNull
-    private int Al_Edad;
+    @Column(name = "Apellido_Alumno")
+    private String Apellido_Alumno;
 
-    @NotNull
-    private String Al_Email;
+    @Column(name = "Email_Alumno")
+    private String Email_Alumno;
 
-    @NotNull
-    private String Al_Telefono;
-
-    @OneToOne(mappedBy = "Alumno")
-    private ConfVisual Al_ConfVisual;
-
-    @ManyToMany
-    @JoinTable(
-    name = "Alumnos_Cursos",
-    joinColumns = @JoinColumn(name = "ID_Alumno", referencedColumnName = "ID_Alumno"),
-    inverseJoinColumns = @JoinColumn(name = "ID_Curso", referencedColumnName = "ID_Curso")
-    )
-    private List<Curso> Al_Cursos;
-
-    public Alumno(long ID_Alumno, String al_Nombre, String al_Apellidos, int al_Edad, String al_Email, String al_Telefono, ConfVisual al_ConfVisual, List<Curso> al_Cursos) {
-        this.ID_Alumno = ID_Alumno;
-        Al_Nombre = al_Nombre;
-        Al_Apellidos = al_Apellidos;
-        Al_Edad = al_Edad;
-        Al_Email = al_Email;
-        Al_Telefono = al_Telefono;
-        Al_ConfVisual = al_ConfVisual;
-        Al_Cursos = al_Cursos;
-    }
+    @Column(name = "TLFN_Alumno")
+    private String TLFN_Alumno;
 
     public Alumno() {}
 
-    public long getID_Alumno() {
+    public Alumno(Long ID_Alumno, String nombre_Alumno, String apellido_Alumno, String email_Alumno, String TLFN_Alumno) {
+        this.ID_Alumno = ID_Alumno;
+        Nombre_Alumno = nombre_Alumno;
+        Apellido_Alumno = apellido_Alumno;
+        Email_Alumno = email_Alumno;
+        this.TLFN_Alumno = TLFN_Alumno;
+    }
+
+    public Alumno(String nombre_Alumno, String apellido_Alumno, String email_Alumno, String TLFN_Alumno) {
+        Nombre_Alumno = nombre_Alumno;
+        Apellido_Alumno = apellido_Alumno;
+        Email_Alumno = email_Alumno;
+        this.TLFN_Alumno = TLFN_Alumno;
+    }
+
+    public Long getID_Alumno() {
         return ID_Alumno;
     }
 
-    public void setID_Alumno(long ID_Alumno) {
+    public void setID_Alumno(Long ID_Alumno) {
         this.ID_Alumno = ID_Alumno;
     }
 
-    public String getAl_Nombre() {
-        return Al_Nombre;
+    public String getNombre_Alumno() {
+        return Nombre_Alumno;
     }
 
-    public void setAl_Nombre(String al_Nombre) {
-        Al_Nombre = al_Nombre;
+    public void setNombre_Alumno(String nombre_Alumno) {
+        Nombre_Alumno = nombre_Alumno;
     }
 
-    public String getAl_Apellidos() {
-        return Al_Apellidos;
+    public String getApellido_Alumno() {
+        return Apellido_Alumno;
     }
 
-    public void setAl_Apellidos(String al_Apellidos) {
-        Al_Apellidos = al_Apellidos;
+    public void setApellido_Alumno(String apellido_Alumno) {
+        Apellido_Alumno = apellido_Alumno;
     }
 
-    public int getAl_Edad() {
-        return Al_Edad;
+    public String getEmail_Alumno() {
+        return Email_Alumno;
     }
 
-    public void setAl_Edad(int al_Edad) {
-        Al_Edad = al_Edad;
+    public void setEmail_Alumno(String email_Alumno) {
+        Email_Alumno = email_Alumno;
     }
 
-    public String getAl_Email() {
-        return Al_Email;
+    public String getTLFN_Alumno() {
+        return TLFN_Alumno;
     }
 
-    public void setAl_Email(String al_Email) {
-        Al_Email = al_Email;
-    }
-
-    public String getAl_Telefono() {
-        return Al_Telefono;
-    }
-
-    public void setAl_Telefono(String al_Telefono) {
-        Al_Telefono = al_Telefono;
-    }
-
-    public ConfVisual getAl_ConfVisual() {
-        return Al_ConfVisual;
-    }
-
-    public void setAl_ConfVisual(ConfVisual al_ConfVisual) {
-        Al_ConfVisual = al_ConfVisual;
-    }
-
-    public List<Curso> getAl_Cursos() {
-        return Al_Cursos;
-    }
-
-    public void setAl_Cursos(List<Curso> al_Cursos) {
-        Al_Cursos = al_Cursos;
+    public void setTLFN_Alumno(String TLFN_Alumno) {
+        this.TLFN_Alumno = TLFN_Alumno;
     }
 
     @Override
     public String toString() {
         return "Alumno{" +
                 "ID_Alumno=" + ID_Alumno +
-                ", Al_Nombre='" + Al_Nombre + '\'' +
-                ", Al_Apellidos='" + Al_Apellidos + '\'' +
-                ", Al_Edad=" + Al_Edad +
-                ", Al_Email='" + Al_Email + '\'' +
-                ", Al_Telefono='" + Al_Telefono + '\'' +
+                ", Nombre_Alumno='" + Nombre_Alumno + '\'' +
+                ", Apellido_Alumno='" + Apellido_Alumno + '\'' +
+                ", Email_Alumno='" + Email_Alumno + '\'' +
+                ", TLFN_Alumno='" + TLFN_Alumno + '\'' +
                 '}';
     }
 }

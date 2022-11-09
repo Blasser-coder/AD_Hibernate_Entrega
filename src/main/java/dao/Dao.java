@@ -15,7 +15,7 @@ abstract class Dao<T, K> {
     public abstract T Consultar(K id);
 
 
-    public T create(T t) {
+    public T Crear(T t) {
         EntityTransaction entityTransaction= em.getTransaction();
         entityTransaction.begin();
         em.persist(t);
