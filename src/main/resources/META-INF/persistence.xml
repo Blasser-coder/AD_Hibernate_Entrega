@@ -6,11 +6,11 @@
     <persistence-unit name="default">
         <properties>
             <property name="hibernate.connection.url"
-                      value="jdbc:mysql://localhost:3306/AD_aulavirtual"/>
+                      value="jdbc:mysql://192.168.56.101:3306/AD_Hibernate_Entrega"/>
             <property name="hibernate.connection.driver_class"
                       value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.password" value="root"/>
-            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="user"/>
+            <property name="hibernate.connection.username" value="user"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQLDialect"/>
